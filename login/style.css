@@ -1,8 +1,87 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap");
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  width: 80%;
+  height: 80%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-radius: 20px;
+  box-shadow: 1px 1px 4px 0 #bab1b1;
+  background-color: white;
+}
+.login-container figure {
+  overflow: hidden;
+}
+.login-container figure img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.login-section {
+  width: 80%;
+  margin-top: -60px;
+  margin-inline: auto;
+  align-self: center;
+}
+.login-section > hgroup {
+  padding: 5px;
+  margin-block: 20px;
+}
+.login-section > hgroup > * {
+  padding: 5px 0;
+}
+.login-section > hgroup > h1 {
+  font-size: 2rem;
+  line-height: 1;
+}
+.login-section > hgroup > p {
+  color: grey;
+  font-size: 0.8rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.form .input-field input {
+  width: 100%;
+  padding: 12px 16px;
+  /* border: none; */
+  /* box-shadow: 0 0 1px 1px #bab1b1; */
+  /* border-radius: 5px; */
+  /* font-size: 1rem; */
+  /* outline: none; */
+}
+
+.remember-me {
+  display: flex;
+}
+
+.remember-me > * {
+  color: black;
+  font-size: 0.7rem;
+}
+.remember-me a {
+  color: gray;
+  margin-left: auto;
+}
+#remember-me {
+  margin-right: 5px;
+}
+#submit {
+  background-color: rgb(34, 32, 32);
+  color: white;
+}
+.signup {
+  font-size: 0.8rem;
+}
+.signup a {
+  color: rgb(113, 18, 172);
 }
