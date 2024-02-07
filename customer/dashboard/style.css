@@ -1,0 +1,31 @@
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.grid-2-cols > * {
+  border-radius: 10px;
+}
+.grid-span-full {
+  grid-column: 1 / -1;
+}
+h4 {
+  margin-bottom: 12px;
+}
+.flex-col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.flex-col > *:nth-child(2) {
+  font-size: 64px;
+  line-height: 1;
+}
+.grid-item {
+  padding: 30px;
+  background-color: white;
+}
+.flex {
+  display: flex;
+  gap: 20px;
+}
