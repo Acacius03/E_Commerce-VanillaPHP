@@ -43,7 +43,7 @@
                             <?php endforeach ?>
                             <li class="checkout">
                                 <span class="total">Total: $<?= $total ?></span>
-                                <button class="cta">Checkout</button>
+                                <a href="/Site1/customer/cart" class="btn cta">View all items</a>
                             </li>
                         <?php else: ?>
                             <li>None</li>

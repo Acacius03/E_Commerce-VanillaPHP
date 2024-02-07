@@ -9,15 +9,3 @@
     $cart = $result->fetch_assoc();
     if ($cart){$cart_items = json_decode($cart['items'], TRUE);}
 ?>
-<?php include_once '../../inc/Head.php'; ?>
-<?php include_once '../../inc/AdminNavigation.php' ?>
-<main>
-    <header><h3 class="page-title">My Transactions</h3></header>
-    <div class="container">
-        <table>
-
-        </table>
-    </div>
-</main>
-</body>
-</html>

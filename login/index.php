@@ -11,8 +11,6 @@ if (isset($_SESSION['admin']) || isset($_SESSION['customer'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script> -->
-    <!-- <script src="./validation.js" defer></script> -->
 </head>
 <body>
     <form action="login.php" method="POST" id="login-form" novalidate>

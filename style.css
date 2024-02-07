@@ -79,12 +79,14 @@ header > div {
   z-index: 1;
   align-self: center;
   text-align: center;
+  margin-top: -80px;
   color: white;
 }
 header h1 {
-  font-size: 80px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 72px;
   line-height: 1.5;
-  font-weight: normal;
+  font-weight: 200;
 }
 header figure {
   position: relative;
