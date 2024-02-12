@@ -5,7 +5,7 @@ $customer = $_SESSION['customer'] ?? NULL;
 if ($customer) {
     $customer_id = $customer['id'];
     
-    $sql = "SELECT * FROM cart WHERE customer_id=$customer_id";
+    $sql = "SELECT * FROM cart WHERE customer_id=$customer_id LIMIT 1";
     $result = mysqli_query($conn, $sql);
     $cart = $result->fetch_assoc();
     if ($cart){$cart_items = json_decode($cart['items'], TRUE);}
@@ -33,3 +33,4 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <script src="app.js"></script>
 </body>
 </html>
+<?php $conn->close() ?>

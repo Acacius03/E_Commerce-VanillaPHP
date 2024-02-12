@@ -36,7 +36,6 @@
                             <td><?= $customer['email'] ?></td>
                             <td class="sex"><?= $customer['sex'] ?></td>
                             <td>
-                                <a href="edit.php?id=<?= $customer['id'] ?>" class="table-item-action edit"><i class="fa-solid fa-pen"></i></a>
                                 <a href="delete.php?id=<?= $customer['id'] ?>" class="table-item-action delete"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>

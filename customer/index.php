@@ -1,5 +1,5 @@
 <?php 
-include 'authentication.php';
-header('Location: ./dashboard/');
+include_once 'authentication.php';
+header('Location: ./profile/');
 exit;
 ?>

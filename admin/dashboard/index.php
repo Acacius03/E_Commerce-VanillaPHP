@@ -19,7 +19,10 @@ function getRevenue($conn) {
     return 0;
 }
 function getRecentTransactions($conn) {
-    return [1];
+    $sql = "SELECT * FROM transactions ORDER BY 'purchased_at' DESC LIMIT 10";
+    $result = mysqli_query($conn, $sql);
+    $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $transactions;
 }
 ?>
 <?php include_once '../../inc/Head.php'; ?>
@@ -73,19 +76,19 @@ function getRecentTransactions($conn) {
                     <div class="table-container">
                         <table>
                             <tr>
-                                <th>ID</th>
                                 <th>Product</th>
                                 <th>Customer</th>
                                 <th>Quantity</th>
+                                <th>Total</th>
                                 <th>Purchased At</th>
                             </tr>
                             <?php foreach(getRecentTransactions($conn) as $transaction) : ?>
                                 <tr>
-                                    <td>ID</td>
-                                    <td>Product</td>
-                                    <td>Customer</td>
-                                    <td>Quantity</td>
-                                    <td>Purchased At</td>
+                                    <td><?= $transaction['product_id']?></td>
+                                    <td><?= $transaction['customer_id']?></td>
+                                    <td><?= $transaction['qty']?></td>
+                                    <td><?= $transaction['unit_price'] * $transaction['qty']?></td>
+                                    <td><?= $transaction['purchased_at']?></td>
                                 </tr>
                             <?php endforeach ?>
                         </table>

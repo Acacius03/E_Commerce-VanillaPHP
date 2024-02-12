@@ -70,6 +70,7 @@ main {
   gap: 20px;
 }
 header {
+  flex-shrink: 0;
   height: 100px;
   display: flex;
   align-items: center;
@@ -85,6 +86,11 @@ header .page-title {
   margin-inline: auto;
 }
 /* Table */
+.clear-cart {
+  font-size: 20px;
+  width: 100%;
+  justify-content: end;
+}
 .table-tools {
   display: flex;
   justify-content: space-between;
@@ -130,10 +136,8 @@ td:has(img) {
 td img {
   object-fit: contain;
   height: 100%;
-  max-height: 60px;
-  max-width: 120px;
-  box-shadow: 0 0 4px 0 black;
-  padding: 8px;
+  max-height: 200px;
+  max-width: 150px;
 }
 th:first-child,
 td:first-child {

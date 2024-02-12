@@ -2,3 +2,4 @@
 <script src="../app.js"></script>
 </body>
 </html>
+<?php $conn->close() ?>

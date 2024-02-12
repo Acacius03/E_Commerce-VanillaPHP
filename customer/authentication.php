@@ -5,4 +5,4 @@ if (!isset($_SESSION['customer'])){
     exit;
 }
 define('auth', $_SESSION['customer']);
-$links = ['dashboard', 'cart', 'transactions', 'profile'];
+$links = ['profile', 'cart', 'transactions' ];

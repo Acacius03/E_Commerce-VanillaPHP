@@ -1,10 +1,7 @@
 <nav>
     <div class="container">
         <a href="/Site1" class="branding">
-            <img src="/Site1/images/logo.png"
-            width="64px"
-            height="48px"
-            alt="Company Logo">
+            <img src="/Site1/images/logo.png" width="64px" height="48px" alt="Company Logo">
         </a>
         <div class="flex">
             <?php if (!isset($_SESSION['admin']) && !isset($customer)): ?>
@@ -14,39 +11,48 @@
                 <a href="/Site1/logout" class="btn">Log Out</a>
             <?php else :?>
                 <div class="dropdown cart">
-                    <label class="">
-                    <span>My Cart</span>
-                    <input type="checkbox" class="dropdown-toggle">
+                    <label>
+                        <span>My Cart</span>
+                        <input type="checkbox" class="dropdown-toggle">
                     </label>
                     <ul>
-                        <?php if (isset($cart_items)): ?>
-                            <?php $total = 0 ?>
-                            <?php foreach($cart_items as $item): ?>
-                                <?php
-                                    $sql = "SELECT name, price, image FROM products WHERE id=$item[id]";
-                                    $result = mysqli_query($conn, $sql);
-                                    $product = $result->fetch_assoc();
-                                ?>
-                                <?php $total += ($product['price'] * $item['qty']) ?>
+                        <?php if (!empty($cart_items)): ?>
+                            <?php 
+                                $total = 0; 
+                                
+                                $itemIds = array();
+                                foreach ($cart_items as $index => $item) {
+                                    $itemIds[] = $item['id'];
+                                    if($index == 2){break;}
+                                }
+                                $itemIdsString = implode(',', $itemIds);
+                                $sql = "SELECT name, price, image FROM products WHERE id IN ($itemIdsString) ORDER BY FIELD(id, $itemIdsString) LIMIT 3";
+                                $result = mysqli_query($conn, $sql);
+                                $productsInCart = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                            ?>
+                            <?php foreach($cart_items as $index => $item): ?>
+                                <?php $total += ($productsInCart[$index]['price'] * $item['qty']) ?>
                                 <li>
                                     <div class="cart-item">
-                                        <img src="images/<?= (!empty($product['image'])) ? $product['image'] : 'placeholders/products.png'; ?>"
-                                        width="64px" height="84px" alt="<?= $product['name']?>">
+                                        <img src="images/<?= (!empty($productsInCart[$index]['image'])) ? $productsInCart[$index]['image'] : 'placeholders/products.png'; ?>"
+                                        width="64px" height="84px" alt="<?= $productsInCart[$index]['name']?>">
                                         <div class="cart-item-info">
-                                            <h3><?= $product['name']?></h3>
+                                            <h3><?= $productsInCart[$index]['name']?></h3>
                                             <small>
-                                                <span class="cart-item-price">$<?= $product['price']?></span><span>Quantity: <?= $item['qty']?></span>
+                                                <span class="cart-item-price">$<?= $productsInCart[$index]['price']?></span>
+                                                <span>Quantity: <?= $item['qty']?></span>
                                             </small>
                                         </div>
                                     </div>
                                 </li>
+                                <?php if($index == 2){break;}?>
                             <?php endforeach ?>
                             <li class="checkout">
                                 <span class="total">Total: $<?= $total ?></span>
                                 <a href="/Site1/customer/cart" class="btn cta">View all items</a>
                             </li>
                         <?php else: ?>
-                            <li>None</li>
+                            <li>The cart is empty</li>
                         <?php endif ?>
                     </ul>
                 </div>
@@ -60,24 +66,6 @@
                         <li>
                             <a href="./customer/">
                                 <span>My Account</span>
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./customer/wishlists">
-                                <span>My Wishlists</span>
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./customer/transactions">
-                                <span>My transactions</span>
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./customer/profile">
-                                <span>My Profile</span>
                                 <i class="fa-solid fa-bag-shopping"></i>
                             </a>
                         </li>

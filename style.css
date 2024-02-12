@@ -45,9 +45,12 @@ nav .dropdown:hover {
   align-items: center;
   font-weight: 1000;
 }
+/* .checkout .btn {
+  min-width: max-content;
+} */
 .cart ul {
   translate: 45% 0;
-  width: 300px;
+  width: 320px;
 }
 .cart-item-info {
   display: flex;
