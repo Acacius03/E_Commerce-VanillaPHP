@@ -11,13 +11,12 @@
     }
     if (isset($_POST['submit'])) {
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $stocks = filter_input(INPUT_POST, 'stocks', FILTER_SANITIZE_NUMBER_INT);
         $tag = filter_input(INPUT_POST, 'tag', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT);
         $sex = filter_input(INPUT_POST, 'sex', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['stocks']) && !empty($_POST['tag'])&& !empty($_POST['price']) && !empty($_POST['sex'])) {
+        if (!empty($_POST['name']) && !empty($_POST['stocks']) && !empty($_POST['tag'])&& !empty($_POST['price']) && !empty($_POST['sex'])) {
             // Image Upload
             $image = '';
             if (!empty($_FILES['image']['name'])) {
@@ -50,7 +49,7 @@
                 }
             }
 
-            $sql = "UPDATE products SET name='$name', description='$description', stocks=$stocks, tag='$tag', price=$price, sex='$sex', image='$image' where id=$id";
+            $sql = "UPDATE products SET name='$name', stocks=$stocks, tag='$tag', price=$price, sex='$sex', image='$image' where id=$id";
             mysqli_query($conn, $sql);
             header("LOCATION: index.php");
         };
@@ -93,10 +92,6 @@
                             <option value="Men">Men</option>
                             <option value="Women">Women</option>
                         </select>
-                    </div>
-                    <div class="description form-input">
-                        <label for="description">Description:</label>
-                        <textarea type="text" name="description" id="description" autocomplete="off"><?= $product['description'] ?></textarea>
                     </div>
                 </div>
                 <label for="image" class="image">

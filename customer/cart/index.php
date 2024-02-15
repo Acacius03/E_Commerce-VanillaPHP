@@ -30,9 +30,10 @@
             }
         }
     }
+
+    include_once '../../inc/Head.php';
+    include_once '../../inc/AdminNavigation.php'
 ?>
-<?php include_once '../../inc/Head.php'; ?>
-<?php include_once '../../inc/AdminNavigation.php' ?>
 <main>
     <header><h3 class="page-title">My Cart</h3></header>
     <div class="container">
@@ -52,14 +53,14 @@
                         <?php $total = 0 ?>
                         <?php foreach($products as $index => $product) : ?>
                             <tr>
-                                <td><img src="../../images/<?=(!empty($product['image'])) ? $product['image'] : 'placeholders/products.webp'; ?>"  height="200px" alt="<?= $product['name'] ?>"></td>
+                                <td><img src="../../images/<?= $product['image'] ?? 'placeholders/products.webp'; ?>"  height="200px" alt="<?= $product['name'] ?>"></td>
                                 <td><?= $product['name'] ?></td>
                                 <td>$<?= $product['price']?></td>
                                 <td>
                                     <form method="POST">
                                         <input type="number" name="id" value="<?= $product['id']?>" style="display:none">
-                                        <input type="number" name="quantity" max=99 value="<?= $cart_items[$index]['qty'] ?>">
-                                        <input type="submit" name="submit" value="Submit" style="display:none">
+                                        <input type="number" name="quantity" id="quantity" max=99 value="<?= $cart_items[$index]['qty'] ?>">
+                                        <input type="submit" name="submit" id="submit" value="Submit" style="display:none">
                                     </form>
                                 </td>
                                 <td>$<?= $product['price'] * $cart_items[$index]['qty'] ?></td>
@@ -88,5 +89,10 @@
         <?php endif ?>
     </div>
 </main>
+<script>
+    document.querySelector('#quantity').addEventListener('blur', () => {
+        document.querySelector('#submit').click();
+    })
+</script>
 </body>
 </html>

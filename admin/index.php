@@ -1,5 +1,3 @@
 <?php 
-include 'authentication.php';
-header('Location: ./dashboard/');
-exit;
-?>
+    header('Location: ./dashboard/');
+    exit;

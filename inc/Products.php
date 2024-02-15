@@ -12,13 +12,17 @@
         <select name="price" id="price">
             <option value=""  selected>Price</option>
         </select>
+        <label for="products-search" class="btn">
+            <input type="text" id="products-search">
+            <span class="">Search</span>
+        </label>
     </div>
     <div class="products-list">
         <?php foreach ($products as $product) : ?>
             <a class="product" href="customer/cart/add.php?id=<?= $product['id']?>" >
                 <img src="images/<?= (!empty($product['image'])) ? $product['image'] : 'placeholders/products.png'; ?>" height="120px" alt="<?= $product['name'] ?>">
                 <div class="product-info">
-                    <p><?= $product['name'] ?></p>
+                    <p class="product-name"><?= $product['name'] ?></p>
                     <p class="product-price">$<?= $product['price'] ?></p>
                     <small><span class="product-gender"><?= $product['sex'] ?></span>'s <span class="product-category"><?= $product['tag'] ?></span></small>
                     <!-- <small>1 Color</small> -->

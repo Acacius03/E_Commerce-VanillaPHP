@@ -2,16 +2,16 @@
     session_start();
     if (isset($_SESSION['admin']) || isset($_SESSION['customer'])){
         header('Location: /Site1/');
+        exit;
     }
 ?>
-<?php include 'register.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create an account</title>
-    <link rel="stylesheet" href="../default.css">
+    <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
     <script src="./validation.js" defer></script>
@@ -26,7 +26,7 @@
                 <h1>Signup</h1>
                 <p>Hello There! Create an account and join Us!.</p>
 
-                <form method="POST" id="signup-form" novalidate>
+                <form action="register.php" method="POST" id="signup-form" novalidate>
                     <div class="main-form">
                         <div class="input-field" >
                             <label class="label" for="first_name">First Name</label>

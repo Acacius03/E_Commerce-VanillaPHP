@@ -10,13 +10,20 @@ function getUserCount($conn) {
     return $count['COUNT(id)'];
 }
 function getOrderCount($conn) {
-    return 0;
+    $sql = "SELECT COUNT(id) FROM transactions";
+    $result = mysqli_query($conn, $sql);
+    $count = $result->fetch_assoc();
+    return $count['COUNT(id)'];
 }
 function getMonthTotal($conn) {
     return 0;
 }
 function getRevenue($conn) {
-    return 0;
+    $sql = "SELECT SUM(price * quantity) FROM transactions";
+    $result = mysqli_query($conn, $sql);
+    $count = $result->fetch_assoc();
+    // print_r($count);
+    return $count['SUM(price * quantity)'];
 }
 function getRecentTransactions($conn) {
     $sql = "SELECT * FROM transactions ORDER BY 'purchased_at' DESC LIMIT 10";
@@ -49,35 +56,35 @@ function getRecentTransactions($conn) {
                         </div>
                         <div>icon</div>
                     </div>
-                    <div class="grid-item flex">
+                    <!-- <div class="grid-item flex">
                         <div class="flex-col">
                             <h4>Month Total</h4>
                             <span><?= getMonthTotal($conn) ?></span>
                         </div>
                         <div>icon</div>
-                    </div>
+                    </div> -->
                     <div class="grid-item flex">
                         <div class="flex-col">
                             <h4>Revenue</h4>
-                            <span><?= getRevenue($conn) ?></span>
+                            <span>P<?= getRevenue($conn) ?></span>
                         </div>
                         <div>icon</div>
                     </div>
                 </div>
-                <div class="grid-2-cols">
-                    <div class="grid-item">
+                <!-- <div class="grid-2-cols"> -->
+                    <!-- <div class="grid-item">
                         <h4>Sales Chart</h4>
 
                         </div>
-                    <div class="grid-item"></div>
-                </div>
+                    <div class="grid-item"></div> -->
+                <!-- </div> -->
                 <div class="grid-span-full grid-item">
                     <h4>Recent Transactions</h4>
                     <div class="table-container">
                         <table>
                             <tr>
-                                <th>Product</th>
-                                <th>Customer</th>
+                                <th>Product ID</th>
+                                <th>Customer ID</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                                 <th>Purchased At</th>
@@ -86,8 +93,8 @@ function getRecentTransactions($conn) {
                                 <tr>
                                     <td><?= $transaction['product_id']?></td>
                                     <td><?= $transaction['customer_id']?></td>
-                                    <td><?= $transaction['qty']?></td>
-                                    <td><?= $transaction['unit_price'] * $transaction['qty']?></td>
+                                    <td><?= $transaction['quantity']?></td>
+                                    <td>P<?= $transaction['price'] * $transaction['quantity']?></td>
                                     <td><?= $transaction['purchased_at']?></td>
                                 </tr>
                             <?php endforeach ?>

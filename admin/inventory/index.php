@@ -46,7 +46,6 @@
                         <th class="name">Name</th>
                         <th class="price">Price</th>
                         <th class="stocks">Stocks</th>
-                        <th>Description</th>
                         <th class="Sex">Sex</th>
                         <th class="tag">Tag</th>
                         <th>Action</th>
@@ -56,9 +55,8 @@
                             <td><?= $product['id'] ?></td>
                             <td><img src="../../images/<?= (!empty($product['image'])) ? $product['image'] : 'placeholders/products.webp'; ?>" height="120px"></td>
                             <td class="name"><?= $product['name'] ?></td>
-                            <td class="price">$ <?= $product['price'] ?></td>
+                            <td class="price">P <?= $product['price'] ?></td>
                             <td class="stocks"><?= $product['stocks'] ?> </td>
-                            <td><?= $product['description'] ?></td>
                             <td class="sex"><?= $product['sex'] ?></td>
                             <td class="tag"><?= $product['tag'] ?></td>
                             <td>

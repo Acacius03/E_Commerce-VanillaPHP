@@ -15,19 +15,19 @@
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $password_confirm = filter_input(INPUT_POST, 'password_confirmation', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
-        if (empty($first_name) || empty($last_name)) {die('Name is required');}
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {die('Valid Email is required');}
+        if (empty($first_name) || empty($last_name)) {die('Name is required');exit;}
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {die('Valid Email is required');exit;}
     
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
         $user = $result->fetch_assoc();
     
-        if ($user && $user['id'] != $id) {die('Email is already taken');}
+        if ($user && $user['id'] != $id) {die('Email is already taken');exit;}
         if (!empty($password)){
-            if (strlen($password) < 8) {die('Password must be at least 8 characters');}
-            if (!preg_match("/[a-z]/i", $password)) {die('Password must contain at least one letter');}
-            if (!preg_match("/[0-9]/i", $password)) {die('Password must contain at least one number');}
-            if ($password != $password_confirm) {die('Password must match'.$password.'  -  '.$password_confirm);}
+            if (strlen($password) < 8) {die('Password must be at least 8 characters');exit;}
+            if (!preg_match("/[a-z]/i", $password)) {die('Password must contain at least one letter');exit;}
+            if (!preg_match("/[0-9]/i", $password)) {die('Password must contain at least one number');exit;}
+            if ($password != $password_confirm) {die('Password must match'.$password.'  -  '.$password_confirm);exit;}
         }
         if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($sex) ) {
             if (!empty($_FILES['image']['name'])) {
@@ -58,9 +58,10 @@
             $_SESSION['customer'] = $result->fetch_assoc();
             header("LOCATION: ./");
         };}
+    
+    include_once '../../inc/Head.php';
+    include_once '../../inc/AdminNavigation.php'
 ?>
-<?php include_once '../../inc/Head.php'; ?>
-<?php include_once '../../inc/AdminNavigation.php' ?>
 <main>
     <header><h3 class="page-title">Profile</h3></header>
     <div class="container">

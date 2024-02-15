@@ -56,12 +56,12 @@
                 $sql = "UPDATE users SET first_name='$first_name', last_name='$last_name', email='$email', sex='$sex', avatar='$image' where id=$id";
                 mysqli_query($conn, $sql);
             }
-            header("LOCATION: index.php");
+            header("LOCATION: ./");
+            exit;
         };
     };
-?>
-<?php include_once '../../inc/Head.php'; ?>
-<?php include_once '../../inc/AdminNavigation.php' ?>
+    include_once '../../inc/Head.php';
+    include_once '../../inc/AdminNavigation.php' ?>
 <main>
     <header>
         <h3 class="page-title">Customers: Edit a Customer</h3>

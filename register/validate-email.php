@@ -1,5 +1,5 @@
 <?php 
-include '../config/database.php';
+include_once '../config/database.php';
 if (isset($_GET['email'])){
     $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_EMAIL);
     $sql = "SELECT * FROM users WHERE email='$email'";

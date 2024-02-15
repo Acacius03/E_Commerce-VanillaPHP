@@ -59,9 +59,9 @@
             $_SESSION['admin'] = $result->fetch_assoc();
             header("LOCATION: ./");
         };}
+    include_once '../../inc/Head.php';
+    include_once '../../inc/AdminNavigation.php';
 ?>
-<?php include_once '../../inc/Head.php'; ?>
-<?php include_once '../../inc/AdminNavigation.php' ?>
 <main>
     <header><h3 class="page-title">Profile</h3></header>
     <div class="container">
